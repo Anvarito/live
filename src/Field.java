@@ -7,7 +7,8 @@ public class Field extends Pane {
     Cell[][] cells;
     private int CellWidth, CellHight;
     private int fieldHeight, fieldWidth;
-    public Field(int fieldWidth, int fieldHeight,int CellWidth, int CellHight){
+
+    public Field(int fieldWidth, int fieldHeight, int CellWidth, int CellHight){
         this.CellHight = CellHight;
         this.CellWidth = CellWidth;
         this.fieldWidth = fieldWidth;
@@ -15,7 +16,7 @@ public class Field extends Pane {
         cells = new Cell[fieldWidth][fieldHeight];
         for (int i = 0; i < fieldHeight; i++) {
             for (int j = 0; j < fieldWidth; j++) {
-                this.getChildren().addAll(new Cell(j*CellWidth,i*CellHight,CellWidth,CellHight));
+                this.getChildren().add(new Cell(j*CellWidth, i*CellHight, CellWidth, CellHight));
             }
         }
     }
