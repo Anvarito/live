@@ -6,14 +6,34 @@ import javafx.scene.shape.Rectangle;
  * Created by Анварито on 18.02.2017.
  */
 public class Cell extends Pane {
-    int x,y;
-    boolean isAlive;
+    int x, y;
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    private boolean isAlive;
+
+    public boolean isChange() {
+        return isChange;
+    }
+
+    public void setChange(boolean change) {
+        isChange = change;
+    }
+
+    private boolean isChange;
     Rectangle rectangle;
 
-    Cell(int x, int y, int width, int height){
-        this.x=x;
-        this.y=y;
+    Cell(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
         this.isAlive = false;
+        this.isChange = false;
 
         this.setHeight(height);
         this.setWidth(width);
@@ -36,19 +56,36 @@ public class Cell extends Pane {
 
         this.setOnMouseClicked(event -> {
 
+            changeState();
             //this.setStyle("-fx-background-color: #795548;");
-            isAlive = !isAlive;
-            if(isAlive)
+            /*isAlive = !isAlive;
+            if (isAlive)
                 rectangle.setFill(Color.RED);
             else
-                rectangle.setFill(Color.BLUE);
+                rectangle.setFill(Color.BLUE);*/
         });
 
         //rectangle.setFill(Color.GREEN);
     }
 
+    public void changeState() {
+        isAlive = !isAlive;
+        if (isAlive)
+            rectangle.setFill(Color.RED);
+        else
+            rectangle.setFill(Color.BLUE);
 
+    }
 
+    public void kill() {
+        isAlive = false;
+        rectangle.setFill(Color.BLUE);
+    }
+
+    public void recover() {
+        isAlive = true;
+        rectangle.setFill(Color.RED);
+    }
 
 
 }
